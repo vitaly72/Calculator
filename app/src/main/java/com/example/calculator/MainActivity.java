@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             binding.editText.setText(sharedPreferences.getString(KEY, "0").replace(",","."));
         }
 
-        System.out.println("work");
         binding.button0.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
