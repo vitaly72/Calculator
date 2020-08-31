@@ -42,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         sharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         if (sharedPreferences.contains(KEY)) {
-            valueOne = Double.parseDouble(sharedPreferences.getString(KEY, "0").replace(",","."));
-            binding.editText.setText(sharedPreferences.getString(KEY, "0").replace(",","."));
+            try {
+                valueOne = Double.parseDouble(sharedPreferences.getString(KEY, "0").replace(",", "."));
+                binding.editText.setText(sharedPreferences.getString(KEY, "0").replace(",", "."));
+            } catch (Exception e) {
+                valueOne = 0;
+                binding.editText.setText("0");
+            }
         }
 
         binding.button0.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                if (binding.editText.getText().length() == 0){
+                if (binding.editText.getText().length() == 0) {
                     System.out.println(binding.editText.getText().length());
                     binding.editText.setText(binding.editText.getText() + "0.");
                 }
